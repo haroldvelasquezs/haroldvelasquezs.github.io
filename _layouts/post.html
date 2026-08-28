@@ -41,7 +41,7 @@ layout: base
 
       {% if page.tags.size > 0 %}
         <div class="blog-tags">
-          Tags:
+          <span data-i18n="ui.tags">Tags:</span>
           {% if site.link-tags %}
           {% for tag in page.tags %}
             <a href="{{ '/tags' | relative_url }}#{{- tag -}}">{{- tag -}}</a>
@@ -59,12 +59,12 @@ layout: base
       <ul class="pager blog-pager">
         {% if page.previous.url %}
         <li class="previous">
-          <a href="{{ page.previous.url | relative_url }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title}}" style="border: none; outline: none; text-decoration: none; text-transform: none;" >&larr; Previous Post</a>
+          <a href="{{ page.previous.url | relative_url }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title}}" style="border: none; outline: none; text-decoration: none; text-transform: none;" data-i18n="ui.previous">&larr; Previous Post</a>
         </li>
         {% endif %}
         {% if page.next.url %}
         <li class="next">
-          <a href="{{ page.next.url | relative_url }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}" style="border: none; outline: none; text-decoration: none; text-transform: none;" >Next Post &rarr;</a>
+          <a href="{{ page.next.url | relative_url }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}" style="border: none; outline: none; text-decoration: none; text-transform: none;" data-i18n="ui.next">Next Post &rarr;</a>
         </li>
         {% endif %}
       </ul>

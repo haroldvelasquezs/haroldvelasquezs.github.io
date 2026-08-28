@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
-        <span class="sr-only">Toggle navigation</span>
+        <span class="sr-only" data-i18n="nav.toggle">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -19,17 +19,17 @@
       {%- for link in site.navbar-links -%}
         {%- if link[1].first %}
           <li class="navlinks-container">
-            <a class="navlinks-parent" href="javascript:void(0)">{{ link[0] }}</a>
+            <a class="navlinks-parent" href="javascript:void(0)" data-i18n="nav.{{ link[0] | downcase | replace: ' ', '-' }}">{{ link[0] }}</a>
             <div class="navlinks-children">
               {%- for childlink in link[1] -%}
               {%- for linkparts in childlink %}
-              <a href="{{ linkparts[1] | relative_url }}">{{ linkparts[0] }}</a>
+              <a href="{{ linkparts[1] | relative_url }}" data-i18n="nav.{{ linkparts[0] | downcase | replace: ' ', '-' }}">{{ linkparts[0] }}</a>
               {%- endfor -%}
               {%- endfor %}
             </div>
           </li>
         {% else %}
-          <li><a href="{{ link[1] | relative_url }}">{{ link[0] }}</a></li>
+          <li><a href="{{ link[1] | relative_url }}" data-i18n="nav.{{ link[0] | downcase | replace: ' ', '-' }}">{{ link[0] }}</a></li>
         {%- endif -%}
       {%- endfor -%}
       </ul>

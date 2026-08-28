@@ -13,21 +13,26 @@
 <header class="header-section">
   <div class="intro-header ribbon">
     <div class="ribbon-pattern" aria-hidden="true"></div>
+    <button type="button" class="lang-toggle" id="lang-toggle" aria-label="Cambiar a español">ES</button>
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           <div class="{{ include.type }}-heading">
-            <h1>{{ ribbon_title }}</h1>
+            <h1{% if include.type == "page" and ribbon_title != site.title %} data-i18n="ribbon.{{ page.title | downcase | replace: ' ', '-' }}"{% endif %}>{{ ribbon_title }}</h1>
             {% if ribbon_sub != "" %}
               {% if include.type == "page" %}
               <hr class="small">
-              <span class="{{ include.type }}-subheading">{{ ribbon_sub }}</span>
+              {% if ribbon_title == site.title %}
+              <span class="{{ include.type }}-subheading" data-i18n="ribbon.home-sub">{{ ribbon_sub }}</span>
+              {% else %}
+              <span class="{{ include.type }}-subheading" data-i18n="ribbon.{{ page.title | downcase | replace: ' ', '-' }}-sub">{{ ribbon_sub }}</span>
+              {% endif %}
               {% else %}
               <h2 class="{{ include.type }}-subheading">{{ ribbon_sub }}</h2>
               {% endif %}
             {% endif %}
             {% if include.type == "post" %}
-            <span class="post-meta">Posted on {{ page.date | date: site.date_format }}</span>
+            <span class="post-meta"><span data-i18n="ui.posted-on">Posted on</span> {{ page.date | date: site.date_format }}</span>
             {% endif %}
           </div>
         </div>
