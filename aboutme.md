@@ -1,18 +1,42 @@
 ---
 layout: page
 title: About
-subtitle:
+subtitle: Geoscience data and analytics for exploration and mining
 ---
 
-I am Harold Velasquez Sanchez, a technical advisor dedicated to advancing geoscience, geostatistics, and informed decision making in the mining industry. My work focuses on helping exploration and mining teams understand their deposits more clearly through rigorous modeling, transparent workflows, and modern analytical tools.
+Harold Velasquez Sanchez is a geoscience data and analytics lead and resource geologist. He helps exploration and mining teams turn geological, geochemical, and sensor data into products and models they can use — and defend — from early interpretation through resource evaluation and mine-to-mill decisions.
 
-I combine expertise in resource geology, geostatistical modeling, high‑resolution geochemical analysis, machine learning, and computer vision to bridge traditional geological knowledge with emerging data technologies. This integrated approach supports clients from early‑stage exploration through advanced resource evaluation.
+His work sits at the intersection of resource geology, geostatistics, geoscience information systems, and machine learning. The emphasis is always the same: geologically grounded methods, production-ready workflows, and results that remain traceable under operational and reporting scrutiny.
 
-Areas of Specialization:
+<div class="expertise">
 
-- Resource and geostatistical modeling
-- Machine learning workflows that remain explainable and geologically grounded
-- Computer vision workflows for geological interpretation
-- Technical guidance for teams adopting modern data and modeling tools
+<div class="expertise-item">
+<h2>Resource geology and geostatistics</h2>
+<p>Geological modeling, exploratory data analysis, and geostatistical estimation and simulation for mineral resources. Categorical and grade modeling across complex, multi-lens, multi-vintage datasets; uncertainty quantification; and CIM-aligned classification in support of NI 43-101 reporting, audits, and due diligence. Experience across gold, copper, and zinc systems.</p>
+</div>
 
-I work with specialists across geology, data science, and mining engineering. My goal is to deliver solutions that are technically robust, operationally practical, and aligned with the real‑world challenges faced by the mineral resource industry.
+<div class="expertise-item">
+<h2>Geoscience data products and systems</h2>
+<p>Design and delivery of geoscience data products and the databases and applications behind them. Integration of geological, assay, and planning data so exploration and operations teams work from a single, queryable source of truth — with QA/QC, documentation, and training built in, not added later.</p>
+</div>
+
+<div class="expertise-item">
+<h2>Sensors, geochemistry, and machine learning</h2>
+<p>Multimodal corescan and sensor workflows — RGB, hyperspectral (SWIR/VNIR), XRF, and magnetic susceptibility — collocated and governed for mineral-system interpretation. Predictive geochemistry, computer-vision logging of core and chips, and machine-learning models that stay explainable, reproducible, and fit for geometallurgical and exploration decisions.</p>
+</div>
+
+<div class="expertise-item">
+<h2>From the deposit to the mill</h2>
+<p>Ore-control and short-term modeling that connect field geology to extraction and processing. Blast-hole and production data, dig-limit definition, and geometallurgical insight designed for daily operations — not one-off studies. The aim is material that is routed correctly, with grade performance and risk visible to geology, planning, and the plant.</p>
+</div>
+
+</div>
+
+He takes methods from experimental design through production: validation against logging and assays, statistical frameworks that can be audited, and knowledge transfer so geoscientists and developers can run and improve the work. Mentoring, technical briefings, and clear documentation are part of delivery.
+
+P.Geo application in progress (Professional Geoscientists Ontario). Working languages: Spanish and English.
+
+<p class="home-actions about-contact">
+  <a class="btn-site" href="mailto:haroldvelasquez248@gmail.com">Email</a>
+  <a class="btn-site btn-site-ghost" href="https://www.linkedin.com/in/ghsv19/">LinkedIn</a>
+</p>

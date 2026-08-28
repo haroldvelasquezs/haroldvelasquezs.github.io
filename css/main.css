@@ -1039,3 +1039,32 @@ social-share-section {
 .page-not-found p {
   color: var(--muted);
 }
+
+.expertise {
+  margin: 40px 0 20px;
+}
+
+.expertise-item {
+  margin: 0 0 32px;
+  padding-top: 4px;
+}
+
+.expertise-item h2 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.expertise-item p {
+  margin: 0;
+  color: var(--ink);
+}
+
+.about-contact {
+  margin-top: 36px;
+}
