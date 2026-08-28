@@ -1,8 +1,7 @@
 ---
 layout: page
-title:  
-subtitle: 
-bigimg: /img/per010rz.jpg
+title: About
+subtitle:
 ---
 
 I am Harold Velasquez Sanchez, a technical advisor dedicated to advancing geoscience, geostatistics, and informed decision making in the mining industry. My work focuses on helping exploration and mining teams understand their deposits more clearly through rigorous modeling, transparent workflows, and modern analytical tools.
