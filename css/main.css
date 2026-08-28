@@ -583,41 +583,6 @@ footer .footer-links a:hover .fa-stack {
   z-index: 1;
 }
 
-.lang-toggle {
-  position: absolute;
-  top: 18px;
-  right: 18px;
-  z-index: 2;
-  background: transparent;
-  color: #f3efe6;
-  border: 1px solid rgba(196, 165, 116, 0.75);
-  padding: 6px 12px;
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  line-height: 1;
-  cursor: pointer;
-  border-radius: 0;
-}
-
-.lang-toggle:hover,
-.lang-toggle:focus {
-  background: rgba(196, 165, 116, 0.16);
-  color: #f3efe6;
-  border-color: #c4a574;
-  outline: none;
-}
-
-@media only screen and (min-width: 768px) {
-  .lang-toggle {
-    top: 24px;
-    right: 28px;
-    padding: 7px 14px;
-    font-size: 12px;
-  }
-}
-
 .intro-header.big-img {
   background: no-repeat center center;
   -webkit-background-size: cover;

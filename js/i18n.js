@@ -132,7 +132,10 @@
   document.addEventListener('DOMContentLoaded', function () {
     var btn = document.getElementById('lang-toggle');
     if (btn) {
-      btn.addEventListener('click', toggle);
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        toggle();
+      });
     }
     apply(getLang());
   });
