@@ -147,6 +147,7 @@
       var isEs = child.getAttribute('data-lang') === 'es';
       child.hidden = showEs ? !isEs : isEs;
     }
+  }
 
   function toggle() {
     var next = getLang() === 'en' ? 'es' : 'en';
