@@ -4,6 +4,11 @@ title: Consulting
 subtitle: Resource modeling, audits, and geoscience data products
 ---
 
+<nav class="service-tabs" aria-label="Services">
+  <a href="{{ '/consulting/' | relative_url }}" class="is-active" data-i18n="nav.consulting">Consulting</a>
+  <a href="{{ '/courses/' | relative_url }}" data-i18n="nav.courses">Courses</a>
+</nav>
+
 <p data-i18n="consulting.lead">Resource modeling, audits, and geoscience data products for exploration and mining teams, from interpretation through resource evaluation and ore control. The work is built for technical review and for day-to-day geology, not a one-off study.</p>
 
 <div class="expertise">

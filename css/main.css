@@ -1183,3 +1183,89 @@ html[lang="es"] article.blog-post > *:not([data-lang="es"]) {
 .about-contact {
   margin-top: 36px;
 }
+
+.service-tabs {
+  display: flex;
+  gap: 0;
+  margin: 0 0 28px;
+  border-bottom: 1px solid var(--line);
+}
+
+.service-tabs a {
+  display: inline-block;
+  padding: 0 2px 10px;
+  margin: 0 22px 0 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--muted);
+  border-bottom: 2px solid transparent;
+}
+
+.service-tabs a:hover,
+.service-tabs a:focus {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.service-tabs a.is-active {
+  color: var(--ink);
+  border-bottom-color: var(--copper);
+}
+
+.courses {
+  margin: 8px 0;
+}
+
+.courses-lead {
+  margin: 0 0 32px;
+  color: var(--ink);
+}
+
+.course-mod {
+  margin: 0 0 28px;
+}
+
+.course-mod h3 {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  margin: 0 0 4px;
+  line-height: 1.35;
+}
+
+.course-mod h3 .n {
+  color: var(--copper);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-right: 10px;
+}
+
+.course-sub {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.course-mod ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.course-mod li {
+  position: relative;
+  margin: 3px 0;
+  padding-left: 1.15em;
+  color: var(--ink);
+}
+
+.course-mod li::before {
+  content: "-";
+  position: absolute;
+  left: 0;
+  color: var(--copper);
+}
