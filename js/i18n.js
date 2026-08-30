@@ -53,7 +53,7 @@
       'nav.resourcegeo': 'Resourcegeo',
       'nav.blog': 'Blog',
       'nav.about': 'Acerca de',
-      'ribbon.home-sub': 'Ciencia de datos espaciales, modelado de recursos, geociencia',
+      'ribbon.home-sub': 'Ciencia de Datos Espaciales, Modelado de Recursos, Geociencia',
       'ribbon.about': 'Acerca de',
       'ribbon.about-sub': 'Datos y analítica geocientífica para exploración y minería',
       'ribbon.blog': 'Blog',
