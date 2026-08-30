@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Create a Compute for Azure ML with CUDA enabled
+title_es: Crear un cómputo en Azure ML con CUDA habilitado
+excerpt_es: Las instancias de cómputo en Azure ML Studio son estaciones de trabajo en la nube, de un solo propietario, preconfiguradas y personalizables para aplicaciones de aprendizaje automático. También permiten compartir archivos entre instancias.
 #subtitle: An essential part of Resources Evaluation. GSLIB Cell Based Method.
 tags: [Azure, CUDA]
 bigimg: /img/per010rz.jpg
@@ -52,3 +54,47 @@ This post showed how to create a compute in azure ML Studio, and do a basic set 
 #### References
 1. [Installing previous versions of pytorch](https://pytorch.org/get-started/previous-versions/)  
 2. [CUDA-enabled GPUs](https://developer.nvidia.com/cuda-gpus)
+
+<div data-lang="es">
+<h4><strong>Qué es un cómputo en Azure ML</strong></h4>
+<p>Las instancias de cómputo en Azure ML Studio son estaciones de trabajo en la nube, de un solo propietario, preconfiguradas, optimizadas y personalizables para aplicaciones de ML. También permiten compartir archivos entre instancias y construir aplicaciones gestionables.</p>
+<h4><strong>Cómo crear un cómputo en Azure ML</strong></h4>
+<p>Configurar una instancia de cómputo es el primer paso antes de desarrollar. En aplicaciones de ML hay que asegurar GPU para habilitar CUDA. Los pasos son:</p>
+<ol>
+<li>Crear Azure ML Compute: nombre: elegir una opción con GPU</li>
+<li>Seleccionar entre las opciones: Standard_NC8as_T4_v3</li>
+</ol>
+<p>Hay varias opciones de cómputo en Azure ML Studio; la seleccionada tiene un precio razonable de 0.75/hr.</p>
+<h4><strong>Qué es CUDA y para qué se necesita</strong></h4>
+<p>CUDA es una plataforma de cómputo paralelo y un modelo de programación de NVIDIA para acelerar aplicaciones aprovechando GPUs.</p>
+<h4><strong>¿Tengo CUDA?</strong></h4>
+<p>CUDA es una característica estándar en GPUs NVIDIA GeForce, Quadro y Tesla, y en soluciones NVIDIA GRID. El listado de productos está <a href="https://developer.nvidia.com/cuda-gpus">aquí</a>. El comando <code>torch.cuda.is_available()</code> comprueba el acceso a GPUs: devuelve True si el driver NVIDIA está bien instalado.</p>
+<h4><strong>Preparar el entorno</strong></h4>
+<p>Para crear un entorno dentro del cómputo se ejecutan pasos en la Terminal. Un problema habitual al armar un entorno con CUDA es la incompatibilidad entre torch y torchvision; el par <code>torch=2.0.0+cu118</code> y <code>torchvision=0.15.1</code> es la elección. Tras instalar esos paquetes, CUDA debería quedar habilitado.</p>
+{% highlight python linenos %}
+conda create -n myenv python==3.8.10
+pip install cython
+pip install torch==2.0.0+cu118 torchvision==0.15.1+cu118  --extra-index-url https://download.pytorch.org/whl/cu118
+
+conda activate myenv
+import torch
+torch.cuda.is_available() 
+
+pip install opencv-python
+pip install azureml
+pip install azureml.core
+pip install azureml-dataset-runtime --upgrade
+
+conda install pip
+conda install ipykernel
+python -m ipykernel install --user --name my_kernel --display-name "my_kernel_display"
+conda list --explicit > spec.txt 
+conda create --name myenv --file spec-file.txt 
+{% endhighlight %}
+<p>Este post mostró cómo crear un cómputo en Azure ML Studio y hacer una configuración básica para ML habilitando CUDA en el entorno.</p>
+<h4>Referencias</h4>
+<ol>
+<li><a href="https://pytorch.org/get-started/previous-versions/">Instalar versiones anteriores de pytorch</a></li>
+<li><a href="https://developer.nvidia.com/cuda-gpus">GPUs con CUDA</a></li>
+</ol>
+</div>

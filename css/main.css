@@ -1040,6 +1040,16 @@ social-share-section {
   color: var(--muted);
 }
 
+html[lang="es"] [data-lang="en"] {
+  display: none !important;
+}
+html:not([lang="es"]) [data-lang="es"] {
+  display: none !important;
+}
+html[lang="es"] article.blog-post > *:not([data-lang="es"]) {
+  display: none !important;
+}
+
 .expertise {
   margin: 40px 0 20px;
 }

@@ -1,6 +1,8 @@
 ---
 layout: post
 title: When Signals Break - Detecting Discontinuities.
+title_es: Cuando las señales se rompen — detección de discontinuidades
+excerpt_es: Las señales presentan irregularidades —caídas súbitas, picos o desplazamientos sutiles— que rompen el patrón. Marcan transiciones importantes, ya sea en mercados, datos sísmicos, escaneos geológicos u otros. Detectarlas exige precisión y el enfoque analítico correcto.
 #subtitle: .
 tags: [Signal Processing]
 bigimg: /img/per010rz.jpg
@@ -31,3 +33,21 @@ PELT balances model fit and complexity when detecting change points by varying t
 
 When signal features are sharp, brief, and localized—like spikes, cracks, or sudden bursts—traditional changepoint methods fail. In these cases, local maximum detection offers a more suitable alternative. This approach identifies points in the signal that stand out as local peaks by comparing each value to its immediate neighbors and evaluating characteristics such as height, prominence, width, and spacing. It is particularly useful for detecting transient anomalies that don’t significantly alter the overall mean but still carry important structural information. 
 <img src="https://raw.githubusercontent.com/numpattern/numpattern.github.io/main/img/Signalbreaks_findpeak_on_core.png" style="width: 100%; height: auto;">
+
+<div data-lang="es">
+<p>Las señales presentan irregularidades —caídas súbitas, picos o desplazamientos sutiles— que rompen el patrón. Marcan transiciones importantes, ya sea en mercados financieros, datos sísmicos, escaneos geológicos u otros. Detectarlas exige precisión y el enfoque analítico correcto. Los algoritmos disponibles se ajustan a aplicaciones específicas. Entre ellos destacan la detección de puntos de cambio y la detección de picos. Aunque distintos en escala y foco, ambos buscan estructura oculta en la señal. Saber cuándo y cómo aplicar cada método es clave para extraer lectura útil. Este post explora cómo las irregularidades revelan verdades más profundas y por qué la estrategia de detección importa.</p>
+<p><strong>Pruned Exact Linear Time (PELT)</strong> detecta desplazamientos en el nivel medio de una señal. Encuentra changepoints en series de tiempo minimizando una función de costo que equilibra ajuste y complejidad. La complejidad es el número de puntos de cambio. Es especialmente eficaz para identificar cambios de media o varianza. PELT usa programación dinámica con una estrategia de poda que descarta candidatos improbables y reduce el tiempo de cómputo. A diferencia de la fuerza bruta, garantiza una solución exacta y, bajo ciertas condiciones, escala de forma lineal con el tamaño de los datos. Ideal para conjuntos grandes donde importan velocidad y exactitud.</p>
+<img src="https://raw.githubusercontent.com/numpattern/numpattern.github.io/main/img/Signalbreaks_pelt_on_synthetic_signal.jpg" style="width: 100%; height: auto;">
+<p><strong>La complejidad del modelo —el número de puntos de cambio— impacta el costo total.</strong> El ejemplo ilustra cómo un término de penalización desalienta el sobreajuste. Caída inicial: añadir puntos de cambio mejora el ajuste (menor SSE). Punto mínimo: el balance óptimo entre ajuste y complejidad. Cola ascendente: más allá, la penalización supera la reducción de SSE y el costo total sube. Es el clásico sesgo–varianza: balancear exactitud y simplicidad.</p>
+<div style="text-align: center;">
+  <img src="https://raw.githubusercontent.com/numpattern/numpattern.github.io/main/img/Signalbreaks_pelt_npoints_vs_tcost.png" style="width: 50%; height: auto;">
+</div>
+<p><strong>Penalización frente al número de puntos de cambio.</strong> PELT equilibra ajuste y complejidad al variar el parámetro de penalización. Costo total: combinación de la suma de errores al cuadrado (SSE) dentro de segmentos y la penalización por añadir puntos de cambio. El número de puntos de cambio (NCP) son las veces que el algoritmo parte la señal. El modelo favorece menos puntos de cambio a medida que sube la penalización y, con ello, baja la complejidad. Caída pronunciada: el modelo es sensible y detecta muchos cambios —incluso ruido— a penalizaciones bajas. Codo: un quiebre donde el número de puntos se estabiliza; suele indicar un buen valor de penalización. Cola plana: a penalizaciones altas el modelo se vuelve conservador y solo detecta cambios mayores. Una penalización alta hace a PELT más conservador; una baja, más permisivo. La región verde es el punto dulce: captura cambios significativos sin sobreajustar ruido. Eso justifica la elección de penalización en datos reales.</p>
+<div style="text-align: center;">
+  <img src="https://raw.githubusercontent.com/numpattern/numpattern.github.io/main/img/Signalbreaks_pelt_penalty_vs_tc_ncp.png" style="width: 50%; height: auto;">
+</div>
+<p><strong>Limitaciones.</strong> PELT puede no ser el mejor aliado cuando hay picos triangulares estrechos y agudos. No son cambios de nivel; son anomalías transitorias y localizadas. En esos casos convienen métodos pensados para disrupciones de corta duración más que para cambios sostenidos. La imagen muestra a PELT con dificultad para detectar esos rasgos. Los picos estrechos y asimétricos pueden representar grietas o anomalías. Las líneas rojas punteadas son el resultado del algoritmo; las azules, irregularidades no detectadas.</p>
+<img src="https://raw.githubusercontent.com/numpattern/numpattern.github.io/main/img/Signalbreaks_pelt_on_signal.jpg" style="width: 100%; height: auto;">
+<p>Cuando los rasgos son agudos, breves y localizados —picos, grietas o ráfagas— los métodos clásicos de changepoint fallan. En esos casos, la detección de máximos locales es una alternativa más adecuada. Identifica puntos que destacan como picos locales comparando cada valor con sus vecinos e incorporando altura, prominencia, ancho y espaciado. Es útil para anomalías transitorias que no alteran de forma significativa la media global pero sí cargan información estructural.</p>
+<img src="https://raw.githubusercontent.com/numpattern/numpattern.github.io/main/img/Signalbreaks_findpeak_on_core.png" style="width: 100%; height: auto;">
+</div>

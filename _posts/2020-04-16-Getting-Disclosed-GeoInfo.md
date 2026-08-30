@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Handling Geological Data
+title_es: Manejo de datos geológicos
+excerpt_es: Hay información geológica disponible en línea, descargable por ejemplo desde publicaciones de Earth Resources del gobierno de Victoria y conjuntos geoespaciales del USGS. Esos datos llegan en formatos diversos —GIS, binario, texto, .dbf, .mdb, .hdf— y hay que conocerlos para analizarlos.
 #subtitle: From Beginning
 bigimg: /img/per010rz.jpg
 tags: [Database, GIS, geopandas, Access]
@@ -87,3 +89,50 @@ Below is the information in the database.
 
 
 [.](https://pbpython.com/pandas_dtypes.html)
+
+<div data-lang="es">
+<p>Hay información geológica disponible en línea. Parte puede descargarse de:</p>
+<ul>
+<li><a href="http://earthresources.efirst.com.au/product.asp?pID=1016&amp;cID=12">Victoria State Government — Earth Resources publications</a></li>
+<li><a href="https://mrdata.usgs.gov/catalog/science.php?thcode=2&amp;term=474">USGS GeoSpatial Datasets</a></li>
+</ul>
+<p>Esos conjuntos suelen llegar en formatos diversos: GIS, binario, texto, .dbf, .mdb, .hdf, entre otros. Hay que conocerlos para continuar el análisis.</p>
+<h3>Abrir archivos .dbf en Python con geopandas</h3>
+<p>Primero, cómo importar .dbf. La tabla dBASE (.dbf) es uno de los tres archivos de un Shapefile ESRI válido. Una opción es <a href="https://geopandas.org/">geopandas</a>, instalable con <code>conda install geopandas</code>. Geopandas puede generar conflictos en algunos entornos conda; conviene dejarlo en el suyo. Opcionalmente, el snippet de abajo. La instalación de geopandas requiere el paquete descartes.</p>
+<pre><code>conda create -n yourenv
+conda activate yourenv
+conda config --env --add channels conda-forge
+conda config --env --set channel_priority strict
+conda install python=3 geopandas</code></pre>
+<p>Una vez instalado geopandas, los datos WaterLab se importan así:</p>
+<pre><code>import geopandas
+df = geopandas.read_file('WaterLab.dbf')</code></pre>
+<p>La columna geometry en las tablas de geopandas almacena formas. WaterLab no tenía contenido en esa columna.</p>
+<p><img src="https://raw.githubusercontent.com/haroldvelasquez/haroldvelasquez.github.io/master/img/Geopandas_table.PNG" alt="Resultado"></p>
+<h4>Graficar formas y teselas con geopandas</h4>
+<p>Geopandas trae su propia base de ejemplo; el snippet permite graficar geometrías georreferenciadas.</p>
+<pre><code>import geopandas
+df = geopandas.read_file(geopandas.datasets.get_path('nybb'))
+_ = df.plot(alpha=0.5, edgecolor='k')</code></pre>
+<p><img src="https://raw.githubusercontent.com/haroldvelasquez/haroldvelasquez.github.io/master/img/gdp_plot.png" alt="Resultado"></p>
+<p>El paquete contextily recupera mapas de teselas en línea que se pueden incrustar en los gráficos. Use el canal conda-forge para instalar contextily y geopandas, y luego <code>pip install descartes</code> en un entorno conda con Python 3.7.</p>
+<p><img src="https://raw.githubusercontent.com/haroldvelasquez/haroldvelasquez.github.io/master/img/Contextily.PNG" alt="Contextily"></p>
+<h3>Abrir bases Microsoft Access (mdb, accdb)</h3>
+<p>Primero hay que establecer una conexión. ODBC (Open Database Connectivity) es una API para acceder a cualquier base. Más detalle para armar la conexión está <a href="https://github.com/mkleehammer/pyodbc/wiki/Connecting-to-Microsoft-Access">aquí</a>. El código siguiente lista los drivers ODBC instalados.</p>
+<pre><code>import pyodbc
+[x for x in pyodbc.drivers() if x.startswith('Microsoft Access Driver')]</code></pre>
+<p>Una lista vacía significa que no hay driver compatible de Access, aunque Office esté instalado. En ese caso se puede descargar Microsoft Access Database Engine 2010 Redistributable; tras instalarlo habrá un driver ODBC. Instale la arquitectura correcta para la máquina y para Python. En este caso, 64 bits para Office y Python.</p>
+<p>Pueden aparecer errores del tipo Unable to open registry key Temporary; el troubleshooting está <a href="https://stackoverflow.com/questions/26244425/general-error-unable-to-open-registry-key-temporary-volatile-from-access">aquí</a>. Errores habituales tienen que ver con permisos de usuario sobre la ruta del archivo Access. Mover la base al directorio de trabajo puede ayudar. Con el driver correcto, el snippet siguiente establece la conexión y ejecuta una consulta SQL.</p>
+<pre><code>import pyodbc
+import pandas as pd
+conn_str = (
+    r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};'
+    r'DBQ=path\to\your\file\Geochemistry.mdb;')
+conn = pyodbc.connect(conn_str)
+
+SQL='SELECT * FROM GSITEASSAY'
+df = pd.read_sql(SQL, conn)
+conn.close()</code></pre>
+<p>Abajo, la información en la base.</p>
+<p><img src="https://raw.githubusercontent.com/haroldvelasquez/haroldvelasquez.github.io/master/img/post002_dataframe.PNG" alt="Dataframe"></p>
+</div>

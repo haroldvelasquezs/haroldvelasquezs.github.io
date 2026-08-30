@@ -8,7 +8,7 @@ subtitle: Technical notes
   {% for post in paginator.posts %}
   <article class="post-preview">
     <a href="{{ post.url | relative_url }}">
-	  <h2 class="post-title">{{ post.title }}</h2>
+	  <h2 class="post-title">{% include i18n-pair.html en=post.title es=post.title_es %}</h2>
 
 	  {% if post.subtitle %}
 	  <h3 class="post-subtitle">
@@ -30,7 +30,10 @@ subtitle: Technical notes
       </div>
       {% endif %}
       <div class="post-entry">
-        {{ post.excerpt | strip_html | xml_escape | truncatewords: site.excerpt_length }}
+        <span data-lang="en">{{ post.excerpt | strip_html | xml_escape | truncatewords: site.excerpt_length }}</span>
+        {% if post.excerpt_es %}
+        <span data-lang="es">{{ post.excerpt_es }}</span>
+        {% endif %}
         {% assign excerpt_word_count = post.excerpt | number_of_words %}
         {% if post.content != post.excerpt or excerpt_word_count > site.excerpt_length %}
           <a href="{{ post.url | relative_url }}" class="post-read-more" data-i18n="ui.read-more">[Read&nbsp;More]</a>

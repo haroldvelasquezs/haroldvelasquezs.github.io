@@ -121,7 +121,32 @@
       btn.textContent = lang === 'en' ? 'ES' : 'EN';
       btn.setAttribute('aria-label', lang === 'en' ? 'Cambiar a español' : 'Switch to English');
     }
+
+    applyPostBody(lang);
   }
+
+  function applyPostBody(lang) {
+    var article = document.querySelector('article.blog-post');
+    if (!article) {
+      return;
+    }
+    var hasEs = false;
+    var children = article.children;
+    for (var i = 0; i < children.length; i++) {
+      if (children[i].getAttribute('data-lang') === 'es') {
+        hasEs = true;
+        break;
+      }
+    }
+    if (!hasEs) {
+      return;
+    }
+    var showEs = lang === 'es';
+    for (var j = 0; j < children.length; j++) {
+      var child = children[j];
+      var isEs = child.getAttribute('data-lang') === 'es';
+      child.hidden = showEs ? !isEs : isEs;
+    }
 
   function toggle() {
     var next = getLang() === 'en' ? 'es' : 'en';

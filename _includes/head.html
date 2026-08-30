@@ -125,6 +125,16 @@
   {% include matomo.html %}
   {% endif %}
 
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('hvs-lang') === 'es') {
+          document.documentElement.lang = 'es';
+        }
+      } catch (e) {}
+    })();
+  </script>
+
   {% if page.comments and site.staticman.repository and site.staticman.branch %}
   <!-- Staticman -->
   <link rel="stylesheet" href="{{ "/css/staticman.css" | relative_url }}" />

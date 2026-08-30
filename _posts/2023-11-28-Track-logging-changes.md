@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Track logging changes
+title_es: Seguimiento de cambios en el logging
+excerpt_es: Los proyectos de exploración acumulan información a lo largo de los años. Los datos cambian por información nueva, recambio de personal y otros factores. Esos cambios deben justificarse y documentarse, con una base de datos sólida y profesionales que aporten detalle.
 #subtitle: An essential part of Resources Evaluation. GSLIB Cell Based Method.
 tags: [EDA]
 bigimg: /img/per010rz.jpg
@@ -64,3 +66,59 @@ Apply the next steps to the new split batch table.
 -  (e) Get the statistics by domain of the entire batch (less or equal than the year of the posterior file).
 
 The relation a - b + c + d = e holds for the length.
+
+<div data-lang="es">
+<p>Los proyectos de exploración acumulan información a lo largo de los años. Los datos cambian por información nueva, recambio de personal y otros factores. Esos cambios deben justificarse y documentarse, con una base de datos sólida y profesionales que aporten detalle. Un caso simple es entender el impacto de nuevos intervalos logueados entre dos años consecutivos usando tablas. Este post las llama prior y posterior. Presenta consideraciones para comparar archivos year‑to‑date de logs categóricos. El prior se asume YTD‑2021 y el posterior YTD‑2022. ID es la columna de identificadores de sondajes. Domain es la columna categórica de interpretaciones. Abajo, un ejemplo de la tabla de logging prior o posterior.</p>
+<table>
+<thead><tr><th>ID</th><th>From</th><th>To</th><th>Domain</th></tr></thead>
+<tbody><tr><td>A0010</td><td>15.40</td><td>17.80</td><td>A</td></tr></tbody>
+</table>
+<p>Además se requiere una tabla con el año de perforación y, de forma opcional, el tipo de muestra.</p>
+<table>
+<thead><tr><th>ID</th><th>Year</th><th>Type</th></tr></thead>
+<tbody>
+<tr><td>A10</td><td>2016</td><td>DH</td></tr>
+<tr><td>A11</td><td>2020</td><td>DH</td></tr>
+<tr><td>A12</td><td>2022</td><td>DH</td></tr>
+</tbody>
+</table>
+<p>Los siguientes pasos preparan los archivos.</p>
+<ol>
+<li>Eliminar blancos al inicio y al final de los ID de testigo.</li>
+<li>Usar mayúsculas o minúsculas de forma consistente en las columnas ID.</li>
+<li>Filtrar valores nulos de Domain en prior y posterior.</li>
+</ol>
+<p>El join usa el conjunto de llaves ID, inicio y fin del intervalo. Tras el cruce, la interpretación del prior queda en D_prior y la del posterior en D_post. Los pasos siguientes etiquetan intervalos con unchanged, changed y new en la columna Tag.</p>
+<ol>
+<li>Left outer join de prior con posterior (tabla 1) y etiquetar como unchanged las interpretaciones iguales en D_prior y D_post. Cubre intervalos logueados en ambas tablas que no cambiaron.</li>
+<li>En la tabla 1, etiquetar como changed donde D_prior y D_post difieren. Cubre intervalos del prior distintos en el posterior: reinterpretación o eliminación (ausentes en el posterior).</li>
+<li>Right outer join de prior con posterior (tabla 2). Etiquetar como new los nulos en D_prior y filtrar filas con Tag nulo. Marca intervalos interpretados en el posterior que no existían en el prior. Esa data nueva viene del mismo año de perforación del posterior, o de interpretar sondajes antiguos en el año del posterior.</li>
+<li>Concatenar las filas de las tablas 1 y 2 en una tabla batch con el etiquetado. Añadir año de perforación y, opcionalmente, tipo de muestra mapeando los ID.</li>
+</ol>
+<table>
+<thead><tr><th>ID</th><th>From</th><th>To</th><th>D_prior</th><th>D_post</th><th>Tag</th><th>Year</th></tr></thead>
+<tbody>
+<tr><td>A10</td><td>15.4</td><td>17.8</td><td>B</td><td>A</td><td>changed</td><td>2016</td></tr>
+<tr><td>A10</td><td>17.8</td><td>20.8</td><td>A</td><td>A</td><td>unchanged</td><td>2016</td></tr>
+<tr><td>A11</td><td>51.8</td><td>53.8</td><td>C</td><td>B</td><td>changed</td><td>2020</td></tr>
+<tr><td>A11</td><td>53.8</td><td>55.8</td><td></td><td>C</td><td>new</td><td>2020</td></tr>
+<tr><td>A12</td><td>37.8</td><td>40.8</td><td></td><td>A</td><td>new</td><td>2022</td></tr>
+</tbody>
+</table>
+<p>Las etiquetas unchanged, changed y new resumen el cambio de información. La variación de longitud a veces basta, pero no es completa. El logging nuevo suele apuntar a zonas mineralizadas; la justificación de la perforación y la reinterpretación debe ser consistente con la variación de contenido metálico. Luego se genera una tabla partiendo los intervalos de logging y la tabla de ensayos de los elementos de interés.</p>
+<table>
+<thead><tr><th>ID</th><th>From'</th><th>To'</th><th>D_prior</th><th>D_post</th><th>Tag</th><th>Year</th><th>Grade</th></tr></thead>
+<tbody>
+<tr><td>A10</td><td>15.5</td><td>16.9</td><td>B</td><td>A</td><td>changed</td><td>2016</td><td>0.30</td></tr>
+</tbody>
+</table>
+<p>Aplicar los siguientes pasos a la tabla partida:</p>
+<ul>
+<li>(a) Estadísticos por D_prior.</li>
+<li>(b) Estadísticos por D_prior del batch donde Tag es changed. Se descuenta del prior por reinterpretaciones.</li>
+<li>(c) Estadísticos por D_post donde Tag es changed, filtrando D_post nulo. Es la data añadida en el posterior que viene de reinterpretar el prior. No contabiliza borrados en el posterior.</li>
+<li>(d) Estadísticos del batch donde Tag es new.</li>
+<li>(e) Estadísticos por dominio de todo el batch (menor o igual al año del archivo posterior).</li>
+</ul>
+<p>La relación a − b + c + d = e se cumple para la longitud.</p>
+</div>

@@ -18,7 +18,7 @@ use-site-title: true
     {% for post in site.posts limit:3 %}
     <article class="post-preview">
       <a href="{{ post.url | relative_url }}">
-        <h2 class="post-title">{{ post.title }}</h2>
+        <h2 class="post-title">{% include i18n-pair.html en=post.title es=post.title_es %}</h2>
         {% if post.subtitle %}
         <h3 class="post-subtitle">{{ post.subtitle }}</h3>
         {% endif %}
@@ -26,7 +26,10 @@ use-site-title: true
       <p class="post-meta"><span data-i18n="ui.posted-on">Posted on</span> {{ post.date | date: site.date_format }}</p>
       <div class="post-entry-container">
         <div class="post-entry">
-          {{ post.excerpt | strip_html | xml_escape | truncatewords: site.excerpt_length }}
+          <span data-lang="en">{{ post.excerpt | strip_html | xml_escape | truncatewords: site.excerpt_length }}</span>
+          {% if post.excerpt_es %}
+          <span data-lang="es">{{ post.excerpt_es }}</span>
+          {% endif %}
           <a href="{{ post.url | relative_url }}" class="post-read-more" data-i18n="ui.read-more">[Read&nbsp;More]</a>
         </div>
       </div>

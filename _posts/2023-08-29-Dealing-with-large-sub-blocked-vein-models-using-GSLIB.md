@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Dealing with large sub-blocked vein models
+title_es: Modelos de vetas sub-bloqueadas de gran tamaño
+excerpt_es: A veces hay que trabajar con modelos sub-bloqueados generados en un software que no está disponible, y solo se tiene acceso a GSLIB. Los programas de GSLIB usan grillas estructuradas no rotadas y escriben a disco. Aun así es posible simular casos reales sin esperas largas ni agotar el almacenamiento.
 #subtitle: An essential part of Resources Evaluation. GSLIB Cell Based Method.
 tags: [Modeling]
 bigimg: /img/per010rz.jpg
@@ -46,3 +48,52 @@ A large sub-blocked model of a narrow structure was used as reference domain to 
 
 ### **References**
 1. [A flexible sequential Gaussian simulation program: USGSIM. Computers & geosciences, 41, 208-216](https://www.sciencedirect.com/science/article/abs/pii/S0098300411002755)
+
+<div data-lang="es">
+<p>A veces hay que trabajar con modelos sub‑bloqueados generados en un software que no está disponible, y solo se tiene acceso a GSLIB. Al usar programas de GSLIB hay que considerar: (1) usan grillas estructuradas no rotadas, y (2) escriben a disco. Eso no debería desalentar: es posible simular casos reales con rutinas convencionales de GSLIB sin esperas largas ni agotar el almacenamiento. Aquí resumo pasos prácticos para modelos grandes de vetas angostas sub‑bloqueadas, simular con rapidez y subir de escala a las celdas padre originales.</p>
+<h3><strong>Tarea</strong></h3>
+<p>Usar GSLIB para generar un modelo simulado y promediar hasta las celdas padre de un modelo sub‑bloqueado irregular <strong>BM</strong>. Aplanar los composites <strong>cmp</strong> antes de estimar/simular. Se encontraron estos problemas:</p>
+<ul>
+<li>El software puede no manejar la definición de grilla para importar un modelo sub‑bloqueado irregular</li>
+<li>La orientación del modelo (p. ej. una estructura angosta) puede no alinearse con un plano mayor (XY, YZ, XZ), lo que infla el tamaño en disco por un griddef GSLIB grande</li>
+<li>Los composites consisten en coordenadas de centroide (sin survey, traza, top ni bottom)</li>
+</ul>
+<h3><strong>Especificaciones de los datos</strong></h3>
+<ul>
+<li>Se entregan los composites y el modelo sub‑bloqueado</li>
+<li>La definición de grilla no estaba rotada; eso impidió rotar</li>
+<li><strong>BM</strong> puede exportarse con coordenadas XYZ de celdas pobladas (no considerar despobladas). No confiar en indexación previa</li>
+<li><strong>BM</strong> está codificado con el dominio</li>
+</ul>
+<h3><strong>Pasos</strong></h3>
+<ol>
+<li>Aplanar el modelo de grilla sub‑bloqueado alineándolo a un eje principal
+  <ol>
+    <li>Regularizar el modelo sub‑bloqueado a <strong>BM1</strong>, con celdas pequeñas</li>
+    <li>Aplanar BM1 a BM1_ proyectando las celdas a lo largo de un eje (p. ej. Y) a su plano ortogonal (p. ej. XZ)</li>
+    <li>Crear un diccionario <strong>key2coord</strong> con <strong>key</strong>:(coordenada X‑Z), <strong>value</strong>: Ymn más bajo (o Ymx más alto) del grupo X‑Z, y mapear Ymn a todas las celdas BM1</li>
+    <li>Aplanar BM1_: Y_projected = Y − Ymn</li>
+  </ol>
+</li>
+<li>Proyectar composites usando coordenadas del block model
+  <ol>
+    <li>Regularizar <strong>BM</strong> a <strong>BM2</strong> con las celdas más pequeñas para más precisión</li>
+    <li>Aplanar <strong>BM2</strong> a BM2_ proyectando a lo largo de un eje (p. ej. Y) al plano perpendicular (p. ej. XZ)</li>
+    <li>Para <strong>BM2</strong>, obtener <strong>key2coord2</strong> con <strong>key</strong>:(coordenada X‑Z), <strong>value</strong>: Ymn más bajo (o Ymx más alto) del grupo X‑Z</li>
+    <li>Asignar a los composites las coordenadas XYZ más cercanas de <strong>BM2</strong></li>
+    <li>Aplanar los composites <strong>cmp</strong> a <strong>cmp_</strong> proyectando a un eje, usando <strong>key2coord2</strong>: Y_projected = Y − Ymn</li>
+  </ol>
+</li>
+<li>Crear un griddef GSLIB que coincida con <strong>BM1_</strong></li>
+<li>Imponer todos los 1D‑idx (griddef GSLIB estructurado) a <strong>BM1_</strong> y generar un archivo keyout</li>
+<li>Simular</li>
+<li>Desaplanar <strong>BM1_</strong> a <strong>BM1</strong> usando <strong>key2coord</strong>, con los valores simulados</li>
+<li>Subir de escala <strong>BM1</strong></li>
+</ol>
+<h3><strong>Conclusiones</strong></h3>
+<p>Un modelo sub‑bloqueado grande de una estructura angosta se usó como dominio de referencia para generar un modelo simulado y escalarlo a las celdas padre originales. El impacto de la proyección de coordenadas y de la precisión debe entenderse y es específico de cada caso. Los programas GSLIB pueden usarse con éxito para simular grillas grandes no estructuradas.</p>
+<h3><strong>Referencias</strong></h3>
+<ol>
+<li><a href="https://www.sciencedirect.com/science/article/abs/pii/S0098300411002755">A flexible sequential Gaussian simulation program: USGSIM. Computers &amp; geosciences, 41, 208-216</a></li>
+</ol>
+</div>
