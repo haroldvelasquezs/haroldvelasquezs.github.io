@@ -39,7 +39,7 @@ proportion.
 
 <img src="https://github.com/numpattern/numpattern.github.io/blob/main/img/rockparticle_04.JPG?raw=true" style="width: 100%; height: auto;">
 
-<div data-lang="es">
+<div data-lang="es" hidden>
 <p>El análisis de imagen extrae información para cuantificar formas, enumerar estructuras y caracterizar la geometría de objetos. Las partículas de roca resultan de erosión, tronadura, conminución y otros procesos. Sus características geométricas codifican información sobre el proceso que las generó. La mineralogía influye en las propiedades mecánicas y determina forma y tamaño de cada partícula. Las imágenes digitales se particionan en constituyentes antes del análisis.</p>
 <p>La aplicabilidad de modelos de segmentación como Segment Anything, Mask R-CNN y DeepLab para partículas de roca depende de los requisitos de la tarea, la flexibilidad, la personalización y la eficiencia de recursos. El ejemplo muestra un resultado en una imagen con numerosos clastos. Las máscaras de color particionan la imagen. Sobre los contornos rojos se calculan métricas auto‑descriptivas para derivar descriptores de forma.</p>
 <div style="display: flex; justify-content: space-between;">

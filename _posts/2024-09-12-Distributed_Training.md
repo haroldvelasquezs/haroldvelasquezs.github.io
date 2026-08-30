@@ -108,7 +108,7 @@ Ping statistics for 192.168.1.13:
     Packets: Sent = 4, Received = 4, Lost = 0 (0% loss)
 {% endhighlight %}
 
-<div data-lang="es">
+<div data-lang="es" hidden>
 <p>El entrenamiento distribuido consiste en partir la carga de trabajo entre varias unidades de procesamiento para acelerar el entrenamiento, en especial en aprendizaje automático.</p>
 <p>Las direcciones IP son etiquetas únicas asignadas a cada dispositivo en una red. Gobiernan cómo se envían y reciben datos en internet o en una red local. IPv4 es la cuarta versión; IPv6 es más reciente y no está plenamente adoptada. En IPv4, el identificador de red 192.168.subred.dispositivo denota un rango de direcciones privadas para uso interno. Las direcciones públicas no empiezan por 192.168.</p>
 <p>Tras iniciar sesión en un equipo, el código siguiente resume las interfaces de red. Una interfaz, en este contexto, es el hardware y el software que permiten a un dispositivo comunicarse en red.</p>

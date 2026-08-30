@@ -10,7 +10,7 @@
       'nav.resourcegeo': 'Resourcegeo',
       'nav.blog': 'Blog',
       'nav.about': 'About',
-      'ribbon.home-sub': 'Geoscience, geostatistics, and data science',
+      'ribbon.home-sub': 'Spatial Data Science, Resource Modeling, Geoscience',
       'ribbon.about': 'About',
       'ribbon.about-sub': 'Geoscience data and analytics for exploration and mining',
       'ribbon.blog': 'Blog',
@@ -53,7 +53,7 @@
       'nav.resourcegeo': 'Resourcegeo',
       'nav.blog': 'Blog',
       'nav.about': 'Acerca de',
-      'ribbon.home-sub': 'Geociencia, geoestadística y ciencia de datos',
+      'ribbon.home-sub': 'Ciencia de datos espaciales, modelado de recursos, geociencia',
       'ribbon.about': 'Acerca de',
       'ribbon.about-sub': 'Datos y analítica geocientífica para exploración y minería',
       'ribbon.blog': 'Blog',
@@ -104,9 +104,45 @@
     } catch (e) {}
   }
 
+  function setVisible(el, show) {
+    if (!el) {
+      return;
+    }
+    el.hidden = !show;
+    el.style.display = show ? '' : 'none';
+  }
+
+  function applyLangPairs(lang) {
+    var nodes = document.querySelectorAll('[data-lang]');
+    for (var i = 0; i < nodes.length; i++) {
+      setVisible(nodes[i], nodes[i].getAttribute('data-lang') === lang);
+    }
+  }
+
+  function applyPostBody(lang) {
+    var article = document.querySelector('article.blog-post');
+    if (!article) {
+      return;
+    }
+    var esBlock = article.querySelector('[data-lang="es"]');
+    if (!esBlock) {
+      return;
+    }
+    var showEs = lang === 'es';
+    var kids = article.children;
+    for (var i = 0; i < kids.length; i++) {
+      var kid = kids[i];
+      if (kid === esBlock || kid.contains(esBlock)) {
+        continue;
+      }
+      setVisible(kid, !showEs);
+    }
+  }
+
   function apply(lang) {
     var dict = translations[lang] || translations.en;
     document.documentElement.lang = lang;
+    document.documentElement.setAttribute('data-site-lang', lang);
 
     var nodes = document.querySelectorAll('[data-i18n]');
     for (var i = 0; i < nodes.length; i++) {
@@ -116,37 +152,15 @@
       }
     }
 
+    applyLangPairs(lang);
+    applyPostBody(lang);
+
     var btn = document.getElementById('lang-toggle');
     if (btn) {
       btn.textContent = lang === 'en' ? 'ES' : 'EN';
       btn.setAttribute('aria-label', lang === 'en' ? 'Cambiar a español' : 'Switch to English');
     }
-
-    applyPostBody(lang);
   }
-
-  function applyPostBody(lang) {
-    var article = document.querySelector('article.blog-post');
-    if (!article) {
-      return;
-    }
-    var hasEs = false;
-    var children = article.children;
-    for (var i = 0; i < children.length; i++) {
-      if (children[i].getAttribute('data-lang') === 'es') {
-        hasEs = true;
-        break;
-      }
-    }
-    if (!hasEs) {
-      return;
-    }
-    var showEs = lang === 'es';
-    for (var j = 0; j < children.length; j++) {
-      var child = children[j];
-      var isEs = child.getAttribute('data-lang') === 'es';
-      child.hidden = showEs ? !isEs : isEs;
-    }
 
   function toggle() {
     var next = getLang() === 'en' ? 'es' : 'en';
@@ -154,14 +168,21 @@
     apply(next);
   }
 
-  document.addEventListener('DOMContentLoaded', function () {
-    var btn = document.getElementById('lang-toggle');
-    if (btn) {
-      btn.addEventListener('click', function (e) {
-        e.preventDefault();
-        toggle();
-      });
-    }
+  function bind() {
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest ? e.target.closest('#lang-toggle') : null;
+      if (!btn) {
+        return;
+      }
+      e.preventDefault();
+      toggle();
+    });
     apply(getLang());
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bind);
+  } else {
+    bind();
+  }
 })();

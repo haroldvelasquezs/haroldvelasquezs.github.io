@@ -28,7 +28,7 @@ use-site-title: true
         <div class="post-entry">
           <span data-lang="en">{{ post.excerpt | strip_html | xml_escape | truncatewords: site.excerpt_length }}</span>
           {% if post.excerpt_es %}
-          <span data-lang="es">{{ post.excerpt_es }}</span>
+          <span data-lang="es" hidden>{{ post.excerpt_es }}</span>
           {% endif %}
           <a href="{{ post.url | relative_url }}" class="post-read-more" data-i18n="ui.read-more">[Read&nbsp;More]</a>
         </div>

@@ -32,8 +32,8 @@
           <li><a href="{{ link[1] | relative_url }}" data-i18n="nav.{{ link[0] | downcase | replace: ' ', '-' }}">{{ link[0] }}</a></li>
         {%- endif -%}
       {%- endfor -%}
-        <li>
-          <a href="#" class="lang-toggle" id="lang-toggle" role="button" aria-label="Cambiar a español">ES</a>
+        <li class="lang-item">
+          <button type="button" class="lang-toggle" id="lang-toggle" aria-label="Cambiar a español">ES</button>
         </li>
       </ul>
     </div>

@@ -90,7 +90,7 @@ Below is the information in the database.
 
 [.](https://pbpython.com/pandas_dtypes.html)
 
-<div data-lang="es">
+<div data-lang="es" hidden>
 <p>Hay información geológica disponible en línea. Parte puede descargarse de:</p>
 <ul>
 <li><a href="http://earthresources.efirst.com.au/product.asp?pID=1016&amp;cID=12">Victoria State Government — Earth Resources publications</a></li>

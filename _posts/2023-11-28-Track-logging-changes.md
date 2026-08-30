@@ -67,7 +67,7 @@ Apply the next steps to the new split batch table.
 
 The relation a - b + c + d = e holds for the length.
 
-<div data-lang="es">
+<div data-lang="es" hidden>
 <p>Los proyectos de exploración acumulan información a lo largo de los años. Los datos cambian por información nueva, recambio de personal y otros factores. Esos cambios deben justificarse y documentarse, con una base de datos sólida y profesionales que aporten detalle. Un caso simple es entender el impacto de nuevos intervalos logueados entre dos años consecutivos usando tablas. Este post las llama prior y posterior. Presenta consideraciones para comparar archivos year‑to‑date de logs categóricos. El prior se asume YTD‑2021 y el posterior YTD‑2022. ID es la columna de identificadores de sondajes. Domain es la columna categórica de interpretaciones. Abajo, un ejemplo de la tabla de logging prior o posterior.</p>
 <table>
 <thead><tr><th>ID</th><th>From</th><th>To</th><th>Domain</th></tr></thead>

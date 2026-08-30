@@ -49,7 +49,7 @@ A large sub-blocked model of a narrow structure was used as reference domain to 
 ### **References**
 1. [A flexible sequential Gaussian simulation program: USGSIM. Computers & geosciences, 41, 208-216](https://www.sciencedirect.com/science/article/abs/pii/S0098300411002755)
 
-<div data-lang="es">
+<div data-lang="es" hidden>
 <p>A veces hay que trabajar con modelos sub‑bloqueados generados en un software que no está disponible, y solo se tiene acceso a GSLIB. Al usar programas de GSLIB hay que considerar: (1) usan grillas estructuradas no rotadas, y (2) escriben a disco. Eso no debería desalentar: es posible simular casos reales con rutinas convencionales de GSLIB sin esperas largas ni agotar el almacenamiento. Aquí resumo pasos prácticos para modelos grandes de vetas angostas sub‑bloqueadas, simular con rapidez y subir de escala a las celdas padre originales.</p>
 <h3><strong>Tarea</strong></h3>
 <p>Usar GSLIB para generar un modelo simulado y promediar hasta las celdas padre de un modelo sub‑bloqueado irregular <strong>BM</strong>. Aplanar los composites <strong>cmp</strong> antes de estimar/simular. Se encontraron estos problemas:</p>

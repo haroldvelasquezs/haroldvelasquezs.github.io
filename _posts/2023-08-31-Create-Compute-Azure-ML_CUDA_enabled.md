@@ -55,7 +55,7 @@ This post showed how to create a compute in azure ML Studio, and do a basic set 
 1. [Installing previous versions of pytorch](https://pytorch.org/get-started/previous-versions/)  
 2. [CUDA-enabled GPUs](https://developer.nvidia.com/cuda-gpus)
 
-<div data-lang="es">
+<div data-lang="es" hidden>
 <h4><strong>Qué es un cómputo en Azure ML</strong></h4>
 <p>Las instancias de cómputo en Azure ML Studio son estaciones de trabajo en la nube, de un solo propietario, preconfiguradas, optimizadas y personalizables para aplicaciones de ML. También permiten compartir archivos entre instancias y construir aplicaciones gestionables.</p>
 <h4><strong>Cómo crear un cómputo en Azure ML</strong></h4>
