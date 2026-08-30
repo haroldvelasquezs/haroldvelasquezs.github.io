@@ -2,7 +2,7 @@
 layout: post
 title: Handling Geological Data
 title_es: Manejo de datos geológicos
-excerpt_es: Hay información geológica disponible en línea, descargable por ejemplo desde publicaciones de Earth Resources del gobierno de Victoria y conjuntos geoespaciales del USGS. Esos datos llegan en formatos diversos —GIS, binario, texto, .dbf, .mdb, .hdf— y hay que conocerlos para analizarlos.
+excerpt_es: Hay información geológica disponible en línea, descargable por ejemplo desde publicaciones de Earth Resources del gobierno de Victoria y conjuntos geoespaciales del USGS. Esos datos llegan en formatos diversos (GIS, binario, texto, .dbf, .mdb, .hdf) y hay que conocerlos para analizarlos.
 #subtitle: From Beginning
 bigimg: /img/per010rz.jpg
 tags: [Database, GIS, geopandas, Access]
@@ -75,8 +75,8 @@ Some erros such as Unable to open registry key Temporary can be encountered, and
 import pyodbc
 import pandas as pd
 conn_str = (
-    r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};' #Driver for 64b mdb
-    r'DBQ=path\to\your\file\Geochemistry.mdb;')
+ r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};' #Driver for 64b mdb
+ r'DBQ=path\to\your\file\Geochemistry.mdb;')
 conn = pyodbc.connect(conn_str)
 
 SQL='SELECT * FROM GSITEASSAY'
@@ -93,7 +93,7 @@ Below is the information in the database.
 <div data-lang="es" hidden>
 <p>Hay información geológica disponible en línea. Parte puede descargarse de:</p>
 <ul>
-<li><a href="http://earthresources.efirst.com.au/product.asp?pID=1016&amp;cID=12">Victoria State Government — Earth Resources publications</a></li>
+<li><a href="http://earthresources.efirst.com.au/product.asp?pID=1016&amp;cID=12">Victoria State Government, Earth Resources publications</a></li>
 <li><a href="https://mrdata.usgs.gov/catalog/science.php?thcode=2&amp;term=474">USGS GeoSpatial Datasets</a></li>
 </ul>
 <p>Esos conjuntos suelen llegar en formatos diversos: GIS, binario, texto, .dbf, .mdb, .hdf, entre otros. Hay que conocerlos para continuar el análisis.</p>
@@ -126,8 +126,8 @@ _ = df.plot(alpha=0.5, edgecolor='k')</code></pre>
 <pre><code>import pyodbc
 import pandas as pd
 conn_str = (
-    r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};'
-    r'DBQ=path\to\your\file\Geochemistry.mdb;')
+ r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};'
+ r'DBQ=path\to\your\file\Geochemistry.mdb;')
 conn = pyodbc.connect(conn_str)
 
 SQL='SELECT * FROM GSITEASSAY'

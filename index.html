@@ -1,40 +1,8 @@
 ---
-layout: page
+layout: home
 title:
 subtitle:
 use-site-title: true
 ---
 
-<p class="home-lead" data-i18n="home.lead">I am a resource geologist and spatial data scientist. I work with exploration and mining teams on mineral resource estimation, geological modeling, and geostatistics — transparent workflows they can use and defend.</p>
-
-<p class="home-actions">
-  <a class="btn-site" href="{{ '/blog/index' | relative_url }}" data-i18n="home.writing">Writing</a>
-  <a class="btn-site btn-site-ghost" href="{{ '/consulting' | relative_url }}" data-i18n="nav.consulting">Consulting</a>
-  <a class="btn-site btn-site-ghost" href="{{ '/aboutme' | relative_url }}" data-i18n="nav.about">About</a>
-</p>
-
-<section class="home-latest">
-  <h2 class="home-latest-title" data-i18n="home.latest">Latest writing</h2>
-  <div class="posts-list">
-    {% for post in site.posts limit:3 %}
-    <article class="post-preview">
-      <a href="{{ post.url | relative_url }}">
-        <h2 class="post-title">{% include i18n-pair.html en=post.title es=post.title_es %}</h2>
-        {% if post.subtitle %}
-        <h3 class="post-subtitle">{{ post.subtitle }}</h3>
-        {% endif %}
-      </a>
-      <p class="post-meta"><span data-i18n="ui.posted-on">Posted on</span> {{ post.date | date: site.date_format }}</p>
-      <div class="post-entry-container">
-        <div class="post-entry">
-          <span data-lang="en">{{ post.excerpt | strip_html | xml_escape | truncatewords: site.excerpt_length }}</span>
-          {% if post.excerpt_es %}
-          <span data-lang="es" hidden>{{ post.excerpt_es }}</span>
-          {% endif %}
-          <a href="{{ post.url | relative_url }}" class="post-read-more" data-i18n="ui.read-more">[Read&nbsp;More]</a>
-        </div>
-      </div>
-    </article>
-    {% endfor %}
-  </div>
-</section>
+<p class="home-lead" data-i18n="home.lead">Resource geology and spatial data science for the mineral industry.</p>

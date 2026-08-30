@@ -44,7 +44,7 @@ show-avatar: false
 navbar-col: "#12171c"
 navbar-text-col: "#f3efe6"
 navbar-children-col: "#1c242c"
-page-col: "#f6f3ee"
+page-col: "#ffffff"
 link-col: "#1d5a62"
 hover-col: "#15464c"
 footer-col: "#12171c"

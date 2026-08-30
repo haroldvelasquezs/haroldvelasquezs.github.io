@@ -1,42 +1,30 @@
-<!-- Check if any share-links are active -->
-{% assign any-share-links = false %}
-{% for links in site.share-links-active %}
-  {% if links[1] == true %}
-    {% assign any-share-links = true %}
-  {% endif %}
-{% endfor %}
-
-{% if any-share-links %}
-<section id = "social-share-section">
-  <span class="sr-only" data-i18n="ui.share">Share: </span>
-
-  {% if site.share-links-active.twitter %}
-  <!--- Share on Twitter -->
-    <a href="https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&url={{ page.url | absolute_url | url_encode }}"
-      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
-      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
-      <span class="sr-only">Twitter</span>
-    </a>
-  {% endif %}
-
-  {% if site.share-links-active.facebook %}
-  <!--- Share on Facebook -->
-    <a href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absolute_url | url_encode }}"
-      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
-      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
-      <span class="sr-only">Facebook</span>
-    </a>
-  {% endif %}
-
-  {% if site.share-links-active.linkedin %}
-  <!--- Share on LinkedIn -->
-    <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ page.url | absolute_url | url_encode }}"
-      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
-      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
-      <span class="sr-only">LinkedIn</span>
-    </a>
-  {% endif %}
-
+<section id="social-share-section">
+  <button type="button" class="btn-site btn-site-ghost" id="post-share" data-i18n="ui.share" data-url="{{ page.url | absolute_url }}" data-title="{{ page.title | xml_escape }}" data-copied-en="Link copied" data-copied-es="Enlace copiado">Share</button>
 </section>
-
-{% endif %}
+<script>
+(function () {
+  var btn = document.getElementById('post-share');
+  if (!btn) {
+    return;
+  }
+  btn.addEventListener('click', function () {
+    var url = btn.getAttribute('data-url');
+    var title = btn.getAttribute('data-title') || document.title;
+    var lang = document.documentElement.getAttribute('data-site-lang') || document.documentElement.lang;
+    var copied = lang === 'es' ? btn.getAttribute('data-copied-es') : btn.getAttribute('data-copied-en');
+    if (navigator.share) {
+      navigator.share({ title: title, url: url }).catch(function () {});
+      return;
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function () {
+        var prev = btn.textContent;
+        btn.textContent = copied || 'Link copied';
+        setTimeout(function () { btn.textContent = prev; }, 2000);
+      });
+      return;
+    }
+    window.prompt(copied || url, url);
+  });
+})();
+</script>
