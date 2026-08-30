@@ -2,6 +2,7 @@
 layout: page
 title: Courses
 subtitle: Applied geostatistics for mineral resources
+published: false
 ---
 
 <nav class="service-tabs" aria-label="Services">
