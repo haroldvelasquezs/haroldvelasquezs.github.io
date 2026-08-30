@@ -128,9 +128,9 @@
   <script>
     (function () {
       try {
-        if (localStorage.getItem('hvs-lang') === 'es') {
-          document.documentElement.lang = 'es';
-        }
+        var lang = localStorage.getItem('hvs-lang') === 'es' ? 'es' : 'en';
+        document.documentElement.lang = lang;
+        document.documentElement.setAttribute('data-site-lang', lang);
       } catch (e) {}
     })();
   </script>

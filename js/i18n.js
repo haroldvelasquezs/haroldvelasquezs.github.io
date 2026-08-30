@@ -172,15 +172,24 @@
     apply(next);
   }
 
+  window.__hvsToggleLang = toggle;
+
   function bind() {
-    document.addEventListener('click', function (e) {
-      var btn = e.target.closest ? e.target.closest('#lang-toggle') : null;
-      if (!btn) {
-        return;
-      }
-      e.preventDefault();
-      toggle();
-    });
+    if (window.__hvsI18nBound) {
+      return;
+    }
+    window.__hvsI18nBound = true;
+    var btn = document.getElementById('lang-toggle');
+    if (btn) {
+      btn.onclick = function (e) {
+        if (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+        toggle();
+        return false;
+      };
+    }
     apply(getLang());
   }
 
