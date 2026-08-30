@@ -28,7 +28,7 @@
               {%- endfor %}
             </div>
           </li>
-        {% else %}
+        {% elsif link[1] and link[1] != "" %}
           <li><a href="{{ link[1] | relative_url }}" data-i18n="nav.{{ link[0] | downcase | replace: ' ', '-' }}">{{ link[0] }}</a></li>
         {%- endif -%}
       {%- endfor -%}
