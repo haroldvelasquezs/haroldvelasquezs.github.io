@@ -208,7 +208,8 @@ img {
 }
 
 .navbar-default .navbar-toggle {
-  border-color: rgba(243, 239, 230, 0.28);
+  border: none;
+  background: transparent;
   margin-top: 12px;
 }
 .navbar-default .navbar-toggle .icon-bar {
@@ -216,7 +217,9 @@ img {
 }
 .navbar-default .navbar-toggle:focus,
 .navbar-default .navbar-toggle:hover {
-  background-color: rgba(255, 255, 255, 0.06);
+  background: transparent;
+  outline: none;
+  box-shadow: none;
 }
 .navbar-default .navbar-collapse,
 .navbar-default .navbar-form {
@@ -936,11 +939,13 @@ social-share-section {
 
 .navbar-default button.navbar-toggle:focus,
 .navbar-default button.navbar-toggle:hover {
-  background-color: rgba(255, 255, 255, 0.06);
+  background: transparent;
+  outline: none;
+  box-shadow: none;
 }
 
 .navbar-default button.navbar-toggle[aria-expanded="true"] {
-  background-color: rgba(0, 0, 0, 0.2);
+  background: transparent;
 }
 
 /* Tags page */

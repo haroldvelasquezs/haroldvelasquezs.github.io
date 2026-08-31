@@ -4,7 +4,7 @@ title: Consulting
 subtitle: Resource modeling, audits, and geoscience data products
 ---
 
-<p data-i18n="consulting.lead">Resource modeling, audits, and geoscience data products for exploration and mining teams, from interpretation through resource evaluation and ore control. The work is built for technical review and for day-to-day geology, not a one-off study.</p>
+<p data-i18n="consulting.lead">Resource modeling, audits, and geoscience data products for exploration and mining teams, from interpretation through resource evaluation and ore control. The work is built for technical review and for day-to-day geology.</p>
 
 <div class="expertise">
 
@@ -15,7 +15,7 @@ subtitle: Resource modeling, audits, and geoscience data products
 
 <div class="expertise-item">
 <h2 data-i18n="consulting.exp2.title">Geoscience data products and systems</h2>
-<p data-i18n="consulting.exp2.body">Design and delivery of geoscience data products and the databases and applications behind them. Integration of geological and geoscience data so exploration and operations teams work from a single, usable source.</p>
+<p data-i18n="consulting.exp2.body">Design and delivery of geoscience data products and the databases and applications behind them. Data governance for geological logging and geotechnical instrumentation so records stay controlled, traceable, and usable across teams.</p>
 </div>
 
 <div class="expertise-item">
