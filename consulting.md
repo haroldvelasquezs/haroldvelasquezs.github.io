@@ -30,8 +30,6 @@ subtitle: Resource modeling, audits, and geoscience data products
 
 </div>
 
-<p data-i18n="consulting.close">Delivery includes knowledge transfer, technical briefings, and documentation so teams can run and improve the work.</p>
-
 <p class="home-actions about-contact">
   <a class="btn-site" href="mailto:haroldvelasquez248@gmail.com" data-i18n="ui.email">Email</a>
 </p>
